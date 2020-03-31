@@ -1,25 +1,32 @@
-import * as Koa from "koa"
-import * as Router from "koa-router"
+/* eslint-disable no-console */
+import * as Koa from "koa";
+import * as Router from "koa-router";
+import * as logger from "koa-logger";
+import * as json from "koa-json";
+import * as bodyParser from "koa-bodyparser";
 
-import * as logger from "koa-logger"
-import * as json from "koa-json"
+interface HelloRequest {
+  name: string;
+}
 
-const app = new Koa()
-const router = new Router()
+const app = new Koa();
+const router = new Router();
 
-router.get("/", async (ctx, next) => {
-    ctx.body = {msg: "Hello world!"}
+router.post("/", async (ctx, next) => {
+  const data = ctx.request.body as HelloRequest;
+  ctx.body = { name: data.name };
 
-    await next()
-})
+  await next();
+});
 
 // Middlewares
-app.use(json())
-app.use(logger())
+app.use(json());
+app.use(logger());
+app.use(bodyParser());
 
 // Routes
-app.use(router.routes()).use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(3000, () => {
-    console.log("Koa started")
-})
+  console.log("Koa started");
+});

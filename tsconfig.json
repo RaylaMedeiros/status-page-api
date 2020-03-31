@@ -1,13 +1,15 @@
 {
-    "version": "2.0.2",
-    "compilerOptions": {
-        "outDir": "./dist",
-        "lib": ["ES5", "ES6"],
-        "target": "ES6",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-    },
-    "include": ["./src/**/*"]
+  "version": "2.0.2",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src/**/*"],
+  "extends": "@vtex/tsconfig"
 }
